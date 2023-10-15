@@ -59,7 +59,7 @@ mod tests {
         for i in 5..21 {
             let proof_size = output_proof_size(i, 1);
             println!(
-                "frolling pcs proof size of {} variables is {} bytes",
+                "PolyFRIM pcs proof size of {} variables is {} bytes",
                 i, proof_size
             );
         }

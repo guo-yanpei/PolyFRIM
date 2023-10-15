@@ -1,12 +1,12 @@
-# Benchmarking Froll and FRAVSS
+# Benchmarking PolyFRIM and FRAVSS
 
-Welcome to the repository dedicated to run all tests that performed in Froll.
+Welcome to the repository dedicated to run all tests that performed in PolyFRIM.
 
 ## Overview
 
-This repository facilitates benchmarking tests for Froll.
+This repository facilitates benchmarking tests for PolyFRIM.
 
-- **Implementation Details**: Froll is implemented using $\mathbb{F}_{p^2}$, with $p = 2^{61} - 1$ as the base field and Blake3 as the hash function. The chosen code rate is $2^{-3}$. To modify the code rate, adjust the `CODE_RATE` constant.
+- **Implementation Details**: PolyFRIM is implemented using $\mathbb{F}_{p^2}$, with $p = 2^{61} - 1$ as the base field and Blake3 as the hash function. The chosen code rate is $2^{-3}$. To modify the code rate, adjust the `CODE_RATE` constant.
 
 - **Provided Implementations**:
   - **PolyFRIM**: The multi-linear FRI-based polynomial commitment scheme proposed in paper. Find this mainly in the `pcs/` directory.
