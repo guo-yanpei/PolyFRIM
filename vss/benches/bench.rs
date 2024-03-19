@@ -113,7 +113,7 @@ fn vss_verify(c: &mut Criterion, log_n: usize, terminate_round: usize) {
     }
     let mut group = c.benchmark_group("verify proof");
     group.sample_size(10);
-    group.bench_function(format!("vss verify {}", log_n), move |b| {
+    group.bench_function(format!("vss verify 2^{} parties", log_n), move |b| {
         b.iter(|| {
             parties[0].verify(&folding0, &function0);
         })
@@ -121,9 +121,9 @@ fn vss_verify(c: &mut Criterion, log_n: usize, terminate_round: usize) {
 }
 
 fn bench_vss_deal(c: &mut Criterion) {
-    for i in 5..21 {
+    for i in 10..21 {
         let terminate_round = 1;
-        c.bench_function(&format!("vss prove {}", i), move |b| {
+        c.bench_function(&format!("vss prove 2^{} parties", i), move |b| {
             b.iter(|| {
                 vss_deal(i, terminate_round);
             })
@@ -132,7 +132,7 @@ fn bench_vss_deal(c: &mut Criterion) {
 }
 
 fn bench_vss_verify(c: &mut Criterion) {
-    for i in 5..21 {
+    for i in 10..21 {
         let terminate_round = 1;
         vss_verify(c, i, terminate_round);
     }

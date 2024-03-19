@@ -75,13 +75,20 @@ fn avss_deal(log_n: usize, terminate_round: usize) {
 }
 
 fn bench_avss_deal(c: &mut Criterion) {
-    for i in 5..12 {
+    for i in 7..12 {
         let terminate_round = 1;
-        c.bench_function(&format!("avss prove {}", i), move |b| {
-            b.iter(|| {
-                avss_deal(i, terminate_round);
-            })
-        });
+        c.bench_function(
+            &format!(
+                "avss prove {} degree and {} parties",
+                1 << (i - 2),
+                (1 << (i - 2)) * 3 + 1
+            ),
+            move |b| {
+                b.iter(|| {
+                    avss_deal(i, terminate_round);
+                })
+            },
+        );
     }
 }
 
@@ -152,15 +159,22 @@ fn avss_verify(criterion: &mut Criterion, log_n: usize, terminate_round: usize) 
         }
         function0.push(function[i][0].clone());
     }
-    criterion.bench_function(&format!("avss verify {}", log_n), move |b| {
-        b.iter(|| {
-            assert!(parties[0].verify(&folding0, &function0));
-        })
-    });
+    criterion.bench_function(
+        &format!(
+            "avss verify {} degree and {} parties",
+            1 << log_t,
+            (1 << log_t) * 3 + 1
+        ),
+        move |b| {
+            b.iter(|| {
+                assert!(parties[0].verify(&folding0, &function0));
+            })
+        },
+    );
 }
 
 fn bench_avss_verify(c: &mut Criterion) {
-    for i in 5..12 {
+    for i in 7..12 {
         let terminate_round = 1;
         avss_verify(c, i, terminate_round);
     }
