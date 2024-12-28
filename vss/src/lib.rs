@@ -83,7 +83,7 @@ mod tests {
 
     #[test]
     fn test_proof_size() {
-        for i in 10..21 {
+        for i in 10..=21 {
             let proof_size = output_proof_size(i, 1);
             println!(
                 "vss proof size of 2^{} parties is {} bytes",

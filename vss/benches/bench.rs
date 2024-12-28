@@ -121,7 +121,7 @@ fn vss_verify(c: &mut Criterion, log_n: usize, terminate_round: usize) {
 }
 
 fn bench_vss_deal(c: &mut Criterion) {
-    for i in 10..21 {
+    for i in 10..=21 {
         let terminate_round = 1;
         c.bench_function(&format!("vss prove 2^{} parties", i), move |b| {
             b.iter(|| {
@@ -132,7 +132,7 @@ fn bench_vss_deal(c: &mut Criterion) {
 }
 
 fn bench_vss_verify(c: &mut Criterion) {
-    for i in 10..21 {
+    for i in 10..=21 {
         let terminate_round = 1;
         vss_verify(c, i, terminate_round);
     }
@@ -141,6 +141,6 @@ fn bench_vss_verify(c: &mut Criterion) {
 criterion_group!(
     name = benches;
     config = Criterion::default().sample_size(10);
-    targets = bench_vss_deal, bench_vss_verify
+    targets = bench_vss_deal
 );
 criterion_main!(benches);
